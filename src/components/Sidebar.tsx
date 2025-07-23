@@ -19,7 +19,13 @@ import {
   Activity,
   Brain,
   Layers,
-  GitBranch
+  GitBranch,
+  CheckSquare,
+  Timer,
+  Heart,
+  FileText,
+  Archive,
+  Import
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -36,7 +42,7 @@ const Sidebar = ({ collapsed, onToggle, activeView, onViewChange }: SidebarProps
       label: 'Today Overview', 
       view: 'overview', 
       color: 'text-cyan-400',
-      description: 'Daily habits and goals'
+      description: 'Daily insights & progress'
     },
     { 
       icon: Target, 
@@ -46,18 +52,46 @@ const Sidebar = ({ collapsed, onToggle, activeView, onViewChange }: SidebarProps
       description: 'Neural pattern optimization'
     },
     { 
+      icon: CheckSquare, 
+      label: 'Task Manager', 
+      view: 'tasks', 
+      color: 'text-blue-400',
+      description: 'Neural task queue system'
+    },
+    { 
+      icon: Timer, 
+      label: 'Focus Timer', 
+      view: 'timer', 
+      color: 'text-orange-400',
+      description: 'Pomodoro & time tracking'
+    },
+    { 
+      icon: Heart, 
+      label: 'Mood Tracker', 
+      view: 'mood', 
+      color: 'text-pink-400',
+      description: 'Emotional analytics'
+    },
+    { 
+      icon: BarChart3, 
+      label: 'Analytics', 
+      view: 'analytics', 
+      color: 'text-purple-400',
+      description: 'Performance insights'
+    },
+    { 
       icon: GitBranch, 
       label: 'Roadmap Journey', 
       view: 'roadmap', 
-      color: 'text-blue-400',
-      description: 'Development pathway tracking'
+      color: 'text-indigo-400',
+      description: 'Goal progression tracking'
     },
     { 
       icon: Brain, 
       label: 'Neural Workspace', 
       view: 'workspace', 
-      color: 'text-purple-400',
-      description: 'Advanced knowledge management'
+      color: 'text-violet-400',
+      description: 'Advanced productivity hub'
     },
     { 
       icon: Settings, 
