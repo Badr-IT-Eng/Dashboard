@@ -5,6 +5,7 @@ import HabitTracker from './HabitTracker';
 import TaskManager from './TaskManager';
 import PomodoroTimer from './PomodoroTimer';
 import RoadmapJourney from './RoadmapJourney';
+import CloudSecurityRoadmap from './CloudSecurityRoadmap';
 import NeuralWorkspace from './NeuralWorkspace';
 
 interface MainContentProps {
@@ -61,6 +62,8 @@ const MainContent = ({ sidebarCollapsed, activeView }: MainContentProps) => {
         );
       case 'roadmap':
         return <RoadmapJourney />;
+      case 'cloud-security':
+        return <CloudSecurityRoadmap />;
       case 'workspace':
         return <NeuralWorkspace />;
       case 'settings':

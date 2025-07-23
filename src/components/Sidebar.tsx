@@ -87,6 +87,13 @@ const Sidebar = ({ collapsed, onToggle, activeView, onViewChange }: SidebarProps
       description: 'Goal progression tracking'
     },
     { 
+      icon: Shield, 
+      label: 'Cloud Security Path', 
+      view: 'cloud-security', 
+      color: 'text-emerald-400',
+      description: 'DevSecOps learning roadmap'
+    },
+    { 
       icon: Brain, 
       label: 'Neural Workspace', 
       view: 'workspace', 
