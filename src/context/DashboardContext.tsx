@@ -14,6 +14,7 @@ import {
   generateDefaultStatistics,
   formatDate
 } from '../utils/storage';
+import { showElectronNotification, isElectron } from '../utils/electron';
 
 interface DashboardState {
   user: UserProfile;
@@ -313,11 +314,23 @@ function dashboardReducer(state: DashboardState, action: DashboardAction): Dashb
 
     // Notifications
     case 'ADD_NOTIFICATION':
-      newState.notifications = [{
+      const notification = {
         id: Date.now().toString(),
         ...action.payload,
         timestamp: new Date()
-      }, ...state.notifications.slice(0, 9)]; // Keep only 10 notifications
+      };
+      
+      newState.notifications = [notification, ...state.notifications.slice(0, 9)]; // Keep only 10 notifications
+      
+      // Show native notification if in Electron
+      if (isElectron()) {
+        showElectronNotification(
+          notification.title,
+          notification.message,
+          notification.type === 'error' ? 'critical' : 'normal'
+        );
+      }
+      
       return newState;
       
     case 'REMOVE_NOTIFICATION':

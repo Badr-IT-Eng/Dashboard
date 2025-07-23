@@ -3,6 +3,7 @@ import Sidebar from './Sidebar';
 import MainContent from './MainContent';
 import MatrixBackground from './effects/MatrixBackground';
 import { DashboardProvider } from '../context/DashboardContext';
+import { setupElectronNavigation, cleanupElectronListeners, isElectron, showElectronNotification } from '../utils/electron';
 
 const Dashboard = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -14,7 +15,25 @@ const Dashboard = () => {
       setCurrentTime(new Date());
     }, 1000);
 
-    return () => clearInterval(timer);
+    // Setup Electron navigation if running in Electron
+    if (isElectron()) {
+      setupElectronNavigation((view: string) => {
+        setActiveView(view);
+      });
+
+      // Show welcome notification in Electron
+      showElectronNotification(
+        'NEXUS OS Desktop',
+        'Neural Productivity Suite is now running as a desktop application!'
+      );
+    }
+
+    return () => {
+      clearInterval(timer);
+      if (isElectron()) {
+        cleanupElectronListeners();
+      }
+    };
   }, []);
 
   return (
